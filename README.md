@@ -1,42 +1,42 @@
 ## usersテーブル
-| Column             | Type   | Options                |
-| ------------------ | ------ | ---------------------- |
-| nickname           | string | NOT NULL               |
-| email              | string | NOT NULL               |
-| encrypted_password | string | NOT NULL               |
-| password           | string | NOT NULL, unique: true |
-| last_name          | string | NOT NULL               |
-| first_name         | string | NOT NULL               |
-| last_name_kana     | string | NOT NULL               |
-| first_name_kana    | string | NOT NULL               |
-| birthday           | date   | NOT NULL               |
+| Column             | Type   | Options                    |
+| ------------------ | ------ | -------------------------- |
+| nickname           | string | null: false                |
+| email              | string | null: false , unique: true |
+| encrypted_password | string | null: false                |
+| last_name          | string | null: false                |
+| first_name         | string | null: false                |
+| last_name_kana     | string | null: false                |
+| first_name_kana    | string | null: false                |
+| birthday           | date   | null: false                |
 
 
 ### Association
 - has_many :furimas
-- has_many :comments 
+- has_many :purchases 
 
 ## furimasテーブル
-| Column          | Type       | Options       |
-| --------------- | ---------- | ------------- |
-| title           | string     | NOT NULL      |
-| price           | integer    | NOT NULL      |
-| text            | text       | NOT NULL      |
-| category        | integer    | NOT NULL      |
-| item_status     | integer    | NOT NULL      |
-| shipping_charges| integer    | NOT NULL      |
-| shipping_date   | integer    | NOT NULL      |
-| user            | references |               |
+| Column             | Type       | Options           |
+| ------------------ | ---------- | ----------------- |
+| title              | string     | null: false       |
+| price              | integer    | null: false       |
+| text               | text       | null: false       |
+| category_id        | integer    | null: false       |
+| item_status_id     | integer    | null: false       |
+| shipping_charges_id| integer    | null: false       |
+| shipping_date_id   | integer    | null: false       |
+| prefecture_id      | integer    | null: false       |
+| user               | references | foreign_key: true |
 
 ### Association
 - belongs_to :user
 - has_one    :purchase 
 
 ## purchasesテーブル
-| Column     | Type       | Options  |
-| ---------- | ---------- | -------- |
-| user       | references |          |
-| furima     | references |          |
+| Column     | Type       | Options           |
+| ---------- | ---------- | ----------------- |
+| user       | references | foreign_key: true |
+| furima     | references | foreign_key: true |
 
 ### Association
 - belongs_to :user
@@ -44,15 +44,15 @@
 - has_one    :customer
 
 ## customersテーブル
-| Column         | Type       | Options  |
-| -------------- | ---------- | -------- |
-| postal_code    | integer    | NOT NULL |
-| prefectures    | string     | NOT NULL |
-| municipalities | string     | NOT NULL |
-| address        | string     | NOT NULL |
-| building       | string     |          |
-| phone_number   | integer    | NOT NULL |
-| purchase       | references |          |
+| Column         | Type       | Options           |
+| -------------- | ---------- | ----------------- |
+| postal_code    | string     | null: false       |
+| prefecture_id  | integer    | null: false       |
+| municipality   | string     | null: false       |
+| address        | string     | null: false       |
+| building       | string     |                   |
+| phone_number   | string     | null: false       |
+| purchase       | references | foreign_key: true |
 
 ### Association
 - belongs_to :purchase
