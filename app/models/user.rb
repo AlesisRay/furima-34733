@@ -7,6 +7,7 @@ class User < ApplicationRecord
   has_many :furimas
   has_many :purchases
 
+  validates :password,:password_confirmation,format:{with: /(?=.*[a-zA-Z])(?=.*\d)[a-zA-Z\d]/}
   validates :nickname, presence: true 
 
   with_options presence: true, format: { with: /\A[ぁ-ゔァ-ヴ\p{Ideographic}ａ-ｚＡ-Ｚ０-９]+\z/, message:'全角文字を使用してください' } do
