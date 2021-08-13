@@ -13,8 +13,18 @@
 ActiveRecord::Schema.define(version: 2021_07_24_104744) do
 
   create_table "furimas", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
+    t.string "title", null: false
+    t.integer "price", null: false
+    t.text "text", null: false
+    t.integer "category_id", null: false
+    t.integer "item_status_id", null: false
+    t.integer "shipping_charges_id", null: false
+    t.integer "shipping_date_id", null: false
+    t.integer "prefecture_id", null: false
+    t.bigint "user_id"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.index ["user_id"], name: "index_furimas_on_user_id"
   end
 
   create_table "users", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
@@ -35,4 +45,5 @@ ActiveRecord::Schema.define(version: 2021_07_24_104744) do
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end
 
+  add_foreign_key "furimas", "users"
 end
