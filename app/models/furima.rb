@@ -12,5 +12,6 @@ class Furima < ApplicationRecord
     validates :shipping_charges_id
     validates :shipping_date_id
     validates :prefecture_id
+    validates :image
   end
 end
