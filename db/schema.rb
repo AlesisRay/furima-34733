@@ -36,10 +36,10 @@ ActiveRecord::Schema.define(version: 2021_08_15_151036) do
   create_table "furimas", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
     t.string "title", null: false
     t.integer "price", null: false
-    t.text "text", null: false
+    t.text "info", null: false
     t.integer "category_id", null: false
     t.integer "item_status_id", null: false
-    t.integer "shipping_charges_id", null: false
+    t.integer "shipping_charge_id", null: false
     t.integer "shipping_date_id", null: false
     t.integer "prefecture_id", null: false
     t.bigint "user_id"
