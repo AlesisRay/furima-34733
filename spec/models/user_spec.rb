@@ -133,5 +133,6 @@ RSpec.describe User, type: :model do
       @user.valid?
       expect(@user.errors.full_messages).to include 'Last name kana 全角カタカナのみで入力して下さい'
     end
+    
   end
 end
