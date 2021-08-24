@@ -11,7 +11,7 @@ class Furima < ApplicationRecord
 
   with_options presence: true do
     validates :title
-    validates :price, inclusion: { in: 300..9_999_999 }, format: { with: /\A[0-9]+\z/ }
+    validates :price, inclusion: { in: 300..9_999_999 }, format: { with: /\A[0-9]+\z/ }, numericality: true
     validates :info
     validates :image
 

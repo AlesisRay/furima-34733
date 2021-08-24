@@ -72,6 +72,23 @@ RSpec.describe Furima, type: :model do
       @furima.valid?
       expect(@furima.errors.full_messages).to include "Price is not included in the list"
     end
+    it '価格が半角英数混合では登録できないこと' do
+      @furima.price = '11111k'
+      @furima.valid?
+      expect(@furima.errors.full_messages).to include "Price is not a number"
+    end
+    it '価格が半角英語だけでは登録できないこと' do
+      @furima.price = 'kkkkkk'
+      @furima.valid?
+      expect(@furima.errors.full_messages).to include "Price is not included in the list"
+    end
+
+    #user
+    it 'userが紐付いていなければ出品できない' do
+      @furima.user = nil
+      @furima.valid?
+      expect(@furima.errors.full_messages).to include "User must exist"
+    end
 
   end
 end
