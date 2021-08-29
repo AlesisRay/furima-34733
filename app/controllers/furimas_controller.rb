@@ -1,5 +1,5 @@
 class FurimasController < ApplicationController
-  before_action :authenticate_user!, only: [:new]
+  before_action :authenticate_user!, only: [:new, :edit]
 
   def index
     @furima = Furima.all.order(created_at: :desc)
@@ -20,6 +20,13 @@ class FurimasController < ApplicationController
 
   def show
     @furima = Furima.find(params[:id])
+  end
+
+  def edit
+    @furima = Furima.find(params[:id])
+    unless user_signed_in? && current_user == @furima.user
+      redirect_to root_path
+    end
   end
 
   private
