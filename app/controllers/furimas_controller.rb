@@ -25,13 +25,23 @@ class FurimasController < ApplicationController
   def edit
     @furima = Furima.find(params[:id])
     unless user_signed_in? && current_user == @furima.user
-      redirect_to root_path
+      redirect_to root_path 
+    end
+  end
+
+  def update
+    @furima = Furima.find(params[:id])
+    if @furima.update(furima_params)
+      redirect_to furima_path(@furima)
+    else
+      render :edit
     end
   end
 
   private
-   def furima_params
-    params.require(:furima).permit(:image, :title, :price, :info, :category_id, :item_status_id, :shipping_charge_id, :shipping_date_id, :prefecture_id).merge(user_id: current_user.id)
-   end
 
+  def furima_params
+    params.require(:furima).permit(:image, :title, :price, :info, :category_id, :item_status_id, :shipping_charge_id,
+                                   :shipping_date_id, :prefecture_id).merge(user_id: current_user.id)
+  end
 end
