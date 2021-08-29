@@ -48,47 +48,46 @@ RSpec.describe Furima, type: :model do
       expect(@furima.errors.full_messages).to include "Prefecture can't be blank"
     end
 
-    #販売価格制限
+    # 販売価格制限
 
     it '販売価格は、¥300未満では保存できない' do
       @furima.price = 200
       @furima.valid?
-      expect(@furima.errors.full_messages).to include "Price is not included in the list"
+      expect(@furima.errors.full_messages).to include 'Price is not included in the list'
     end
     it '販売価格は、¥9,999,999より大きい場合は保存できない' do
-      @furima.price = 10000000
+      @furima.price = 10_000_000
       @furima.valid?
-      expect(@furima.errors.full_messages).to include "Price is not included in the list"
+      expect(@furima.errors.full_messages).to include 'Price is not included in the list'
     end
     it '販売価格は、¥300~¥9,999,999の間のみ保存できる' do
       @furima.price = 5000
       expect(@furima).to be_valid
     end
 
-    #販売価格は半角数字のみ
+    # 販売価格は半角数字のみ
 
     it '販売価格が半角数字のみでなければ登録できない' do
       @furima.price = '１０００'
       @furima.valid?
-      expect(@furima.errors.full_messages).to include "Price is not included in the list"
+      expect(@furima.errors.full_messages).to include 'Price is not included in the list'
     end
     it '価格が半角英数混合では登録できないこと' do
       @furima.price = '11111k'
       @furima.valid?
-      expect(@furima.errors.full_messages).to include "Price is not a number"
+      expect(@furima.errors.full_messages).to include 'Price is not a number'
     end
     it '価格が半角英語だけでは登録できないこと' do
       @furima.price = 'kkkkkk'
       @furima.valid?
-      expect(@furima.errors.full_messages).to include "Price is not included in the list"
+      expect(@furima.errors.full_messages).to include 'Price is not included in the list'
     end
 
-    #user
+    # user
     it 'userが紐付いていなければ出品できない' do
       @furima.user = nil
       @furima.valid?
-      expect(@furima.errors.full_messages).to include "User must exist"
+      expect(@furima.errors.full_messages).to include 'User must exist'
     end
-
   end
 end
