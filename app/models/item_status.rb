@@ -11,5 +11,4 @@ class ItemStatus < ActiveHash::Base
 
   include ActiveHash::Associations
   has_many :furimas
-  
-  end
+end

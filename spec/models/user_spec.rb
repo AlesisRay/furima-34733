@@ -68,12 +68,12 @@ RSpec.describe User, type: :model do
       expect(another_user.errors.full_messages).to include 'Email has already been taken'
     end
 
-     # email ＠必須
+    # email ＠必須
 
-     it 'emailは、@を含む必要があること' do
+    it 'emailは、@を含む必要があること' do
       @user.email = 'takuya.com'
       @user.valid?
-      expect(@user.errors.full_messages).to include "Email is invalid"
+      expect(@user.errors.full_messages).to include 'Email is invalid'
     end
 
     # password 6文字
@@ -133,6 +133,5 @@ RSpec.describe User, type: :model do
       @user.valid?
       expect(@user.errors.full_messages).to include 'Last name kana 全角カタカナのみで入力して下さい'
     end
-    
   end
 end

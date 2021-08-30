@@ -7,7 +7,7 @@ class User < ApplicationRecord
          :recoverable, :rememberable, :validatable
 
   validates :password, :password_confirmation, format: { with: /(?=.*[a-zA-Z])(?=.*\d)[a-zA-Z\d]/ }
-  
+
   with_options presence: true do
     validates :nickname
     validates :birthday
@@ -22,5 +22,4 @@ class User < ApplicationRecord
       validates :first_name_kana
     end
   end
-  
 end

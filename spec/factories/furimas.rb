@@ -1,7 +1,7 @@
 FactoryBot.define do
   factory :furima do
     title                 { 'test' }
-    price                 { 10000 }
+    price                 { 10_000 }
     info                  { 'アイウエオ柿くけこ' }
     category_id           { 3 }
     item_status_id        { 2 }
@@ -15,4 +15,3 @@ FactoryBot.define do
     association :user
   end
 end
-
