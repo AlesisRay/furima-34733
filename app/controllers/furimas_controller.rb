@@ -23,7 +23,9 @@ class FurimasController < ApplicationController
   end
 
   def edit
-    redirect_to root_path unless current_user == @furima.user && @furima.purchase.blank?
+    unless current_user == @furima.user && @furima.purchase.blank?
+      redirect_to root_path
+    end
   end
 
   def update
