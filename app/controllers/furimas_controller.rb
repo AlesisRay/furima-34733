@@ -23,7 +23,7 @@ class FurimasController < ApplicationController
   end
 
   def edit
-    unless current_user == @furima.user
+    unless current_user == @furima.user && @furima.purchase.blank?
       redirect_to root_path 
     end
   end
@@ -59,3 +59,4 @@ class FurimasController < ApplicationController
   end
 
 end
+
