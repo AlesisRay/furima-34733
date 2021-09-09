@@ -35,19 +35,19 @@ RSpec.describe PurchaseCustomer, type: :model do
       @purchase_customer.valid?
       expect(@purchase_customer.errors.full_messages).to include "Phone number can't be blank"
     end
- 
+
     it '発送先の地域についての情報が空では登録できない' do
       @purchase_customer.prefecture_id = 1
       @purchase_customer.valid?
       expect(@purchase_customer.errors.full_messages).to include "Prefecture can't be blank"
     end
-    it "tokenが空では登録できないこと" do
+    it 'tokenが空では登録できないこと' do
       @purchase_customer.token = nil
       @purchase_customer.valid?
       expect(@purchase_customer.errors.full_messages).to include("Token can't be blank")
     end
 
-        # ハイフンが必要
+    # ハイフンが必要
 
     it '郵便番号の保存にはハイフンがなければ登録できない' do
       @purchase_customer.postal_code = '1234567'
@@ -55,7 +55,7 @@ RSpec.describe PurchaseCustomer, type: :model do
       expect(@purchase_customer.errors.full_messages).to include 'Postal code is invalid'
     end
 
-        # 電話番号が11桁の数値のみ
+    # 電話番号が11桁の数値のみ
 
     it '電話番号が11桁の数値でないと登録できないこと' do
       @purchase_customer.phone_number = '123456789876'

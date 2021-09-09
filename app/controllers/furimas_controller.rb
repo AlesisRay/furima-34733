@@ -23,9 +23,7 @@ class FurimasController < ApplicationController
   end
 
   def edit
-    unless current_user == @furima.user && @furima.purchase.blank?
-      redirect_to root_path 
-    end
+    redirect_to root_path unless current_user == @furima.user && @furima.purchase.blank?
   end
 
   def update
@@ -38,13 +36,8 @@ class FurimasController < ApplicationController
 
   def destroy
     furima = Furima.find(params[:id])
-    if current_user == furima.user
-      furima.destroy
-      redirect_to root_path
-    else
-      redirect_to root_path
-    end
-    
+    furima.destroy if current_user == furima.user
+    redirect_to root_path
   end
 
   private
@@ -57,6 +50,4 @@ class FurimasController < ApplicationController
   def set_furima
     @furima = Furima.find(params[:id])
   end
-
 end
-

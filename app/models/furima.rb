@@ -25,4 +25,3 @@ class Furima < ApplicationRecord
     end
   end
 end
-
