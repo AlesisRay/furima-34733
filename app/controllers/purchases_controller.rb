@@ -4,6 +4,9 @@ class PurchasesController < ApplicationController
   def index
     @furima = Furima.find(params[:furima_id])
     @purchase_customer = PurchaseCustomer.new
+    if current_user.id == @furima.user_id or @furima.purchase.present?
+      redirect_to root_path
+    end
   end
 
   def create
