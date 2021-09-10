@@ -47,6 +47,12 @@ RSpec.describe PurchaseCustomer, type: :model do
       expect(@purchase_customer.errors.full_messages).to include("Token can't be blank")
     end
 
+    #建物名が任意
+    it '建物名がなくても登録できること' do
+      @purchase_customer.building = ''
+      expect(@purchase_customer).to be_valid
+    end
+
     # ハイフンが必要
 
     it '郵便番号の保存にはハイフンがなければ登録できない' do
@@ -61,6 +67,19 @@ RSpec.describe PurchaseCustomer, type: :model do
       @purchase_customer.phone_number = '123456789876'
       @purchase_customer.valid?
       expect(@purchase_customer.errors.full_messages).to include 'Phone number is invalid'
+    end
+
+    #アソシエーション
+    it 'userが紐付いていなければ出品できない' do
+      @purchase_customer.user_id = nil
+      @purchase_customer.valid?
+      expect(@purchase_customer.errors.full_messages).to include "User can't be blank"
+    end
+
+    it 'furimaが紐付いていなければ出品できない' do
+      @purchase_customer.furima_id = nil
+      @purchase_customer.valid?
+      expect(@purchase_customer.errors.full_messages).to include "Furima can't be blank"
     end
   end
 end
